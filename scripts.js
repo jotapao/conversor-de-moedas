@@ -3,12 +3,15 @@ const EUR = 6.46
 const GBP = 7.56
 
 
-
-
 //Obtendo os elementos do formulário.
 const form = document.querySelector ("form")
 const amount = document.getElementById ("amount")
 const currency = document.getElementById ("currency")
+const footer = document.querySelector ("main footer")
+const description = document.getElementById ("description")
+
+
+
 
 
 //Manipulando o input amount para receber apenas números.
@@ -33,16 +36,34 @@ form.onsubmit = (event) => {
             case "GBP":
             convertCurrency(amount.value, GBP, "£")
             break
-
-
-
-    }
+   }
     
     }
 
     //Função para converter a moeda.
     function convertCurrency(amount, price, symbol) {
-        console.log(amount,price,symbol)
+        try {
+            //Exibindo a cotação da moeda selecionada.
+            description.textContent =  `${symbol} 1 = ${formatCurrencyBRL(price)}`
+
+            //Aplica a classe que exibe o footer para mostrar o resultado
+            footer.classList.add("show-result")
+            
+        } catch (error) {
+            console.log (error)
+
+            //Remove a classe do footer removendo ele da tela
+            footer.classList.remove("show-result")
+            alert("Não foi possível converter, tente novamente mais tarde") 
+        }
 
     }
     
+    //Formata a moeda em real Brasileiro
+    function formatCurrencyBRL(value) {
+        return Number (value).toLocaleString("ipt-BR" , {
+            style: "currency" ,
+            currency: "BRL"
+        })
+        
+    }
