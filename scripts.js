@@ -9,6 +9,8 @@ const amount = document.getElementById ("amount")
 const currency = document.getElementById ("currency")
 const footer = document.querySelector ("main footer")
 const description = document.getElementById ("description")
+const result = document.getElementById ("result")
+
 
 
 
@@ -46,6 +48,12 @@ form.onsubmit = (event) => {
             //Exibindo a cotação da moeda selecionada.
             description.textContent =  `${symbol} 1 = ${formatCurrencyBRL(price)}`
 
+            //Calcula o resultado total
+            let = amount + price
+
+            //Exibe o resultado total
+            result.textContent = total
+
             //Aplica a classe que exibe o footer para mostrar o resultado
             footer.classList.add("show-result")
             
@@ -61,6 +69,8 @@ form.onsubmit = (event) => {
     
     //Formata a moeda em real Brasileiro
     function formatCurrencyBRL(value) {
+
+        //Converte para número para utilizar o toLocaleString para formatar no padrão BRL
         return Number (value).toLocaleString("ipt-BR" , {
             style: "currency" ,
             currency: "BRL"
