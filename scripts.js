@@ -49,10 +49,11 @@ form.onsubmit = (event) => {
             description.textContent =  `${symbol} 1 = ${formatCurrencyBRL(price)}`
 
             //Calcula o resultado total
-            let = amount + price
+            let total = amount * price
+            total = formatCurrencyBRL(total).replace("R$", "")
 
             //Exibe o resultado total
-            result.textContent = total
+            result.textContent = `${total} Reais`
 
             //Aplica a classe que exibe o footer para mostrar o resultado
             footer.classList.add("show-result")
