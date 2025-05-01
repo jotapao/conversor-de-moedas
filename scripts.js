@@ -26,6 +26,7 @@ amount.addEventListener ("input", ()=>{
 //Capturando o evento de Submit (enviar) do fomrulário.
 form.onsubmit = (event) => {
     event.preventDefault ()
+    
     switch (currency.value) {
         case "USD":
             convertCurrency(amount.value, USD, "US$")
@@ -50,7 +51,14 @@ form.onsubmit = (event) => {
 
             //Calcula o resultado total
             let total = amount * price
+
+
+            //Verifica se o resultado não é um número
+            if (isNaN(total)) { 
+                return alert("Por favor, digite o valor corretamente para converter")                
+            }
             total = formatCurrencyBRL(total).replace("R$", "")
+
 
             //Exibe o resultado total
             result.textContent = `${total} Reais`
